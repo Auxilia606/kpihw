@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import TabNavigator from '@app/TabNavigator';
 import Detail from '@pages/Detail';
 import Main from '@pages/Main';
 
@@ -25,7 +26,7 @@ const RootNavigator = () => {
           name="Main"
           component={Main}
           options={{
-            title: '메인페이지',
+            headerShown: false,
           }}
         />
         <Stack.Screen
@@ -33,6 +34,13 @@ const RootNavigator = () => {
           component={Detail}
           options={{
             title: '상세페이지',
+          }}
+        />
+        <Stack.Screen
+          name="Tab"
+          component={TabNavigator}
+          options={{
+            headerShown: false,
           }}
         />
       </Stack.Navigator>

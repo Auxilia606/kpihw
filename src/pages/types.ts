@@ -5,6 +5,7 @@ declare global {
     interface RootParamList {
       Main: undefined;
       Detail: undefined;
+      Tab: undefined;
     }
   }
 }

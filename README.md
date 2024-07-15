@@ -2,7 +2,7 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+> **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
 ## Step 1: Start the Metro Server
 
@@ -77,3 +77,31 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+# FSD TEMPLATE
+
+기능 분할 설계에 대하여:<br>
+https://emewjin.github.io/feature-sliced-design/
+
+원문:<br>
+https://dev.to/m_midas/feature-sliced-design-the-best-frontend-architecture-4noj
+
+의존성 설치<br>
+
+> yarn
+
+프로젝트 실행<br>
+
+> yarn dev
+
+빌드
+
+> yarn build
+
+## yarn 설치
+
+> npm install --global yarn
+
+버전 확인
+
+> yarn --version

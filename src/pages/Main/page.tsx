@@ -7,6 +7,7 @@
 
 import React from 'react';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -21,12 +22,14 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {useNavigation} from '@react-navigation/native';
 
 import Section from '@shared/components/Section';
 
 import styles from './styles';
 
-const Main = () => {
+const Page = () => {
+  const navigation = useNavigation();
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -47,6 +50,12 @@ const Main = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <Button
+            title="Go To Detail"
+            onPress={() => {
+              navigation.navigate('Detail');
+            }}
+          />
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
@@ -67,4 +76,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Page;

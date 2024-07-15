@@ -105,3 +105,11 @@ https://dev.to/m_midas/feature-sliced-design-the-best-frontend-architecture-4noj
 버전 확인
 
 > yarn --version
+
+## React-Navigation
+
+https://reactnavigation.org/docs/getting-started/
+
+If you're on a Mac and developing for iOS, you need to install the pods (via Cocoapods) to complete the linking.
+
+> npx pod-install ios

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {Main} from '@pages/Main';
+import RootNavigator from './RootNavigator';
 
-function App(): React.JSX.Element {
-  return <Main />;
-}
+const App = () => {
+  return <RootNavigator />;
+};
 
 export default App;

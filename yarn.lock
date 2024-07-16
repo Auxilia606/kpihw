@@ -6929,6 +6929,8 @@ __metadata:
     eslint-plugin-react-refresh: ^0.4.8
     eslint-plugin-simple-import-sort: ^12.1.1
     jest: ^29.6.3
+    metro: ^0.80.9
+    metro-core: ^0.80.9
     prettier: 2.8.8
     react: 18.2.0
     react-native: 0.74.3
@@ -7199,7 +7201,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"metro-core@npm:0.80.9, metro-core@npm:^0.80.3":
+"metro-core@npm:0.80.9, metro-core@npm:^0.80.3, metro-core@npm:^0.80.9":
   version: 0.80.9
   resolution: "metro-core@npm:0.80.9"
   dependencies:
@@ -7321,7 +7323,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"metro@npm:0.80.9, metro@npm:^0.80.3":
+"metro@npm:0.80.9, metro@npm:^0.80.3, metro@npm:^0.80.9":
   version: 0.80.9
   resolution: "metro@npm:0.80.9"
   dependencies:

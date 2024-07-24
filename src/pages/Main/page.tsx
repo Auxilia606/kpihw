@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {SafeAreaView, Text, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useNavigation} from '@react-navigation/native';
 
 import styles from './styles';
+import {RootStackScreenProps} from '@pages/types';
 
-const Page = () => {
-  const navigation = useNavigation();
+const Page = (props: RootStackScreenProps<'Main'>) => {
+  const {navigation} = props;
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -15,7 +15,10 @@ const Page = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Tab');
+      navigation.navigate('Tab', {
+        screen: 'Settings',
+        params: {text: 'Home Changed!'},
+      });
     }, 2000);
   }, [navigation]);
 

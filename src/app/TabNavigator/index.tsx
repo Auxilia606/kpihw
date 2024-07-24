@@ -5,8 +5,9 @@ import Home from '@pages/Home';
 import Settings from '@pages/Settings';
 
 import {AccountIcon, HomeIcon} from './tabBarIcon';
+import {TabParamList} from '@pages/types';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => {
   return (

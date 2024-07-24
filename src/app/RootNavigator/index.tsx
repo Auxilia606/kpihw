@@ -5,8 +5,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabNavigator from '@app/TabNavigator';
 import Detail from '@pages/Detail';
 import Main from '@pages/Main';
+import {RootStackParamList} from '@pages/types';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigator = () => {
   return (

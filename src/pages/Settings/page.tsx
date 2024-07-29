@@ -9,8 +9,9 @@ import React from 'react';
 import {SafeAreaView, Text, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import styles from './styles';
 import {TabScreenProps} from '@pages/types';
+
+import styles from './styles';
 
 const Page = (props: TabScreenProps<'Settings'>) => {
   const {route} = props;

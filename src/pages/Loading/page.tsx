@@ -6,7 +6,7 @@ import {RootStackScreenProps} from '@pages/types';
 
 import styles from './styles';
 
-const Page = (props: RootStackScreenProps<'Main'>) => {
+const Page = (props: RootStackScreenProps<'Loading'>) => {
   const {navigation} = props;
   const isDarkMode = useColorScheme() === 'dark';
 

@@ -4,15 +4,17 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import TabNavigator from '@app/TabNavigator';
 import Detail from '@pages/Detail';
+import Loading from '@pages/Loading';
 import Main from '@pages/Main';
+import {RootStackParamList} from '@pages/types';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Main"
+        initialRouteName="Loading"
         screenOptions={{
           headerStyle: {
             backgroundColor: '#f4511e',
@@ -22,6 +24,13 @@ const RootNavigator = () => {
             fontWeight: 'bold',
           },
         }}>
+        <Stack.Screen
+          name="Loading"
+          component={Loading}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="Main"
           component={Main}

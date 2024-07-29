@@ -3,10 +3,11 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Home from '@pages/Home';
 import Settings from '@pages/Settings';
+import {TabParamList} from '@pages/types';
 
 import {AccountIcon, HomeIcon} from './tabBarIcon';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => {
   return (

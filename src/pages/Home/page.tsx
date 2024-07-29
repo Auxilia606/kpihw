@@ -1,17 +1,13 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import {SafeAreaView, Text, useColorScheme} from 'react-native';
+import {Button, SafeAreaView, Text, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+
+import {TabScreenProps} from '@pages/types';
 
 import styles from './styles';
 
-const Page = () => {
+const Page = (props: TabScreenProps<'Home'>) => {
+  const {navigation} = props;
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -23,6 +19,10 @@ const Page = () => {
       <Text>
         <Text style={styles.highlight}>Home</Text> Page!!
       </Text>
+      <Button
+        title="go to setting"
+        onPress={() => navigation.navigate('Settings', {text: 'test'})}
+      />
     </SafeAreaView>
   );
 };

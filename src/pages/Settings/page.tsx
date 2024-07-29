@@ -8,6 +8,7 @@
 import React from 'react';
 import {SafeAreaView, Text, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import Config from 'react-native-config';
 
 import {TabScreenProps} from '@pages/types';
 
@@ -26,6 +27,7 @@ const Page = (props: TabScreenProps<'Settings'>) => {
       <Text>
         <Text style={styles.highlight}>Setting</Text> Page!! Params:{' '}
         {route.params.text}
+        {Config.ENV}
       </Text>
     </SafeAreaView>
   );

@@ -2,11 +2,12 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import TabNavigator from '@app/TabNavigator';
 import Detail from '@pages/Detail';
 import Loading from '@pages/Loading';
 import Main from '@pages/Main';
 import {RootStackParamList} from '@pages/types';
+
+import TabNavigator from './TabNavigator';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

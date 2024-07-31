@@ -3,7 +3,6 @@ import {SafeAreaView, Text, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import {RootStackScreenProps} from '@pages/types';
-import CalendarModule from '@shared/modules/Calendar';
 
 import styles from './styles';
 
@@ -22,8 +21,6 @@ const Page = (props: RootStackScreenProps<'Loading'>) => {
         params: {text: 'Home Changed!'},
       });
     }, 2000);
-
-    CalendarModule.createCalendarEvent('testName', 'testLocation');
   }, [navigation]);
 
   return (

@@ -1,11 +1,12 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
+import Chat from '@pages/Chat';
 import Home from '@pages/Home';
 import Settings from '@pages/Settings';
 import {TabParamList} from '@pages/types';
 
-import {AccountIcon, HomeIcon} from './tabBarIcon';
+import {AccountIcon, ChatIcon, HomeIcon} from './tabBarIcon';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
@@ -27,6 +28,14 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: '홈',
           tabBarIcon: HomeIcon,
+        }}
+      />
+      <Tab.Screen
+        name="Chat"
+        component={Chat}
+        options={{
+          tabBarLabel: '챗',
+          tabBarIcon: ChatIcon,
         }}
       />
       <Tab.Screen

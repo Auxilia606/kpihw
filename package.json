@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "react-native run-android --mode=developdebug",
     "android-dev": "react-native run-android --mode=developdebug",
     "android-prod": "react-native run-android --mode=productdebug",
     "build:android-dev": "react-native build-android --mode=developrelease",

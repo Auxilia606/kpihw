@@ -15,6 +15,7 @@ export type RootStackParamList = {
 export type TabParamList = {
   Home: undefined;
   Settings: {text: string};
+  Chat: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

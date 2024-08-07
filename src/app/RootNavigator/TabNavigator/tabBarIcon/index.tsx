@@ -11,6 +11,16 @@ export const HomeIcon = (props: {
   return <MaterialCommunityIcons name="home" {...{color, size}} />;
 };
 
+export const ChatIcon = (props: {
+  focused: boolean;
+  color: string;
+  size: number;
+}) => {
+  const {color, size} = props;
+
+  return <MaterialCommunityIcons name="chat" {...{color, size}} />;
+};
+
 export const AccountIcon = (props: {
   focused: boolean;
   color: string;

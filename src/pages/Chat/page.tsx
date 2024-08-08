@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import TabHeader from '@features/TabHeader';
+
 import styles from './styles';
 
 const Page = () => {
@@ -61,11 +63,7 @@ const Page = () => {
   return (
     <SafeAreaView style={flexStretch}>
       <View style={flexStretch}>
-        {/* Chat Header */}
-        <View style={styles.chatHeader}>
-          <Text style={styles.chatHeaderTitle}>Chat</Text>
-        </View>
-
+        <TabHeader title="Chat" />
         {/* Chat Area */}
         <ScrollView>
           {chatMessages.map((msg, idx) => {

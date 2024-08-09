@@ -6,14 +6,21 @@ import RecordFeeling from '@pages/RecordFeeling';
 import RecordFeelingEmoji from '@pages/RecordFeelingEmoji';
 import SelectChatbot from '@pages/SelectChatbot';
 import {HomeStackParamList} from '@pages/types';
+import HomeHeader from '@entities/HomeHeader';
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
 
 // const HomeStackNavigator = (props: TabScreenProps<'HomeNavigator'>) => {
 const HomeStackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={Home} />
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{header: HomeHeader}}>
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="RecordFeeling" component={RecordFeeling} />
       <Stack.Screen name="RecordFeelingEmoji" component={RecordFeelingEmoji} />
       <Stack.Screen name="SelectChatbot" component={SelectChatbot} />

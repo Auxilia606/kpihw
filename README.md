@@ -78,6 +78,16 @@ To learn more about React Native, take a look at the following resources:
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
 
+# Wireless Development Setting
+
+Before: 디바이스와 개발 PC가 같은 Wi-Fi 환경에 위치해야 함
+
+안드로이드 기준 개발자 옵션 활성화 - 무선 디버깅 활성화 - ip, port 확인
+
+`adb connect {ip}:{port}`
+
+위 명령을 통해 디바이스와 개발 PC를 무선 연결 가능
+
 # FSD TEMPLATE
 
 기능 분할 설계에 대하여:<br>

@@ -1,29 +1,31 @@
 import React from 'react';
-import {Button, SafeAreaView, Text, useColorScheme} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {View} from 'react-native';
 
-import {TabScreenProps} from '@pages/types';
+import {HomeStackScreenProps} from '@pages/types';
+import CustomText from '@shared/components/CustomText';
+import SimpleButton from '@shared/components/SimpleButton';
+import Wrapper from '@shared/components/Wrapper/component';
 
 import styles from './styles';
 
-const Page = (props: TabScreenProps<'Home'>) => {
+const Page = (props: HomeStackScreenProps<'Home'>) => {
   const {navigation} = props;
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <Text>
-        <Text style={styles.highlight}>Home</Text> Page!!
-      </Text>
-      <Button
-        title="go to setting"
-        onPress={() => navigation.navigate('Settings', {text: 'test'})}
-      />
-    </SafeAreaView>
+    <Wrapper>
+      <View style={styles.textContainer}>
+        <CustomText fontSize="lg" textAlign="center">
+          오늘 감정을 기록해주세요
+        </CustomText>
+        <CustomText fontSize="lg" textAlign="center">
+          {'감정을 기록하면\n이 순간에 꼭 맞는\n콘텐츠를 찾아 드릴게요'}
+        </CustomText>
+        <SimpleButton
+          onPress={() => navigation.navigate('RecordFeeling')}
+          title="감정 기록하기"
+        />
+      </View>
+    </Wrapper>
   );
 };
 

@@ -9,11 +9,17 @@ const styles = StyleSheet.create({
     color: '#000000',
     textAlign: 'center',
   },
-  textContainer: {
-    gap: 24,
-    flex: 1,
-    justifyContent: 'center',
+  button: {
+    alignSelf: 'center',
+    paddingTop: 8,
+    paddingBottom: 12,
+    paddingHorizontal: 32,
+    borderRadius: 32,
+    borderWidth: 1,
+    borderColor: '#000000',
+    backgroundColor: '#ffffff',
   },
+  pressed: {backgroundColor: '#aaaaaa'},
 });
 
 export default styles;

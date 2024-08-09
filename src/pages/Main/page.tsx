@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView, Text, useColorScheme} from 'react-native';
+import {SafeAreaView, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import {RootStackScreenProps} from '@pages/types';
+import CustomText from '@shared/components/CustomText';
 
 import styles from './styles';
 
@@ -25,7 +26,7 @@ const Page = (props: RootStackScreenProps<'Main'>) => {
 
   return (
     <SafeAreaView style={{...backgroundStyle, ...styles.container}}>
-      <Text style={styles.text}>KPIHW</Text>
+      <CustomText>Test main page</CustomText>
     </SafeAreaView>
   );
 };

@@ -2,32 +2,36 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Chat from '@pages/Chat';
-import Home from '@pages/Home';
 import Settings from '@pages/Settings';
 import {TabParamList} from '@pages/types';
 
-import {AccountIcon, ChatIcon, HomeIcon} from './tabBarIcon';
+import HomeStackNavigator from './HomeStackNavigator';
+// import {AccountIcon, ChatIcon, HomeIcon} from './tabBarIcon';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeNavigator"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          paddingTop: 4,
-          paddingBottom: 8,
           height: 48,
+        },
+        tabBarItemStyle: {justifyContent: 'center'},
+        tabBarIconStyle: {display: 'none'},
+        tabBarLabelStyle: {
+          fontSize: 20,
+          letterSpacing: -20 * 0.05,
+          fontWeight: '500',
         },
       }}>
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="HomeNavigator"
+        component={HomeStackNavigator}
         options={{
           tabBarLabel: '홈',
-          tabBarIcon: HomeIcon,
         }}
       />
       <Tab.Screen
@@ -35,7 +39,6 @@ const TabNavigator = () => {
         component={Chat}
         options={{
           tabBarLabel: '챗',
-          tabBarIcon: ChatIcon,
         }}
       />
       <Tab.Screen
@@ -43,7 +46,6 @@ const TabNavigator = () => {
         component={Settings}
         options={{
           tabBarLabel: '설정',
-          tabBarIcon: AccountIcon,
         }}
       />
     </Tab.Navigator>

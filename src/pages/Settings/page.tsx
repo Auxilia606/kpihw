@@ -24,7 +24,7 @@ const Page = (props: TabScreenProps<'Settings'>) => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <CustomText>
-        SettingPage!! Params: {route.params.text}
+        SettingPage!! Params: {route.params?.text}
         {Config.ENV}
       </CustomText>
     </SafeAreaView>

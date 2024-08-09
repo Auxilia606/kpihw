@@ -24,5 +24,9 @@ export const useHomeTabAtom = () => {
     value.screenStack.length = 0;
   }, [value.screenStack]);
 
-  return {push, pop, reset};
+  const check = useCallback(() => {
+    return !!value.screenStack.length;
+  }, [value.screenStack.length]);
+
+  return {push, pop, reset, check};
 };

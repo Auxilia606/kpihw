@@ -2,6 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 
 import {HomeStackScreenProps} from '@pages/types';
+import HomeHeader from '@entities/HomeHeader';
 import CustomText from '@shared/components/CustomText';
 import SimpleButton from '@shared/components/SimpleButton';
 import Wrapper from '@shared/components/Wrapper/component';
@@ -13,6 +14,7 @@ const RecordFeeling = (props: HomeStackScreenProps<'RecordFeeling'>) => {
 
   return (
     <Wrapper>
+      <HomeHeader navigation={navigation} />
       <View style={styles.textContainer}>
         <CustomText fontSize="lg" textAlign="center">
           기록 방법을 선택해주세요

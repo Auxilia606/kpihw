@@ -6,7 +6,6 @@ import RecordFeeling from '@pages/RecordFeeling';
 import RecordFeelingEmoji from '@pages/RecordFeelingEmoji';
 import SelectChatbot from '@pages/SelectChatbot';
 import {HomeStackParamList} from '@pages/types';
-import HomeHeader from '@entities/HomeHeader';
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
 
@@ -15,7 +14,9 @@ const HomeStackNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      screenOptions={{header: HomeHeader}}>
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Stack.Screen
         name="Home"
         component={Home}

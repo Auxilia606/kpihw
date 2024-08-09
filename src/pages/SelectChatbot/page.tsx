@@ -2,6 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 
 import {HomeStackScreenProps} from '@pages/types';
+import HomeHeader from '@entities/HomeHeader';
 import CustomText from '@shared/components/CustomText';
 import SimpleButton from '@shared/components/SimpleButton';
 import Wrapper from '@shared/components/Wrapper/component';
@@ -13,6 +14,7 @@ const SelectChatbot = (props: HomeStackScreenProps<'SelectChatbot'>) => {
 
   return (
     <Wrapper>
+      <HomeHeader navigation={navigation} />
       <View style={styles.textContainer}>
         <CustomText fontWeight="bold" fontSize="lg" textAlign="center">
           오늘은 누구와 대화해볼까요?

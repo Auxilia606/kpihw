@@ -2,10 +2,10 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Chat from '@pages/Chat';
-import Home from '@pages/Home';
 import Settings from '@pages/Settings';
 import {TabParamList} from '@pages/types';
 
+import HomeStackNavigator from './HomeStackNavigator';
 import {AccountIcon, ChatIcon, HomeIcon} from './tabBarIcon';
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -13,7 +13,7 @@ const Tab = createBottomTabNavigator<TabParamList>();
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeNavigator"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -23,8 +23,8 @@ const TabNavigator = () => {
         },
       }}>
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="HomeNavigator"
+        component={HomeStackNavigator}
         options={{
           tabBarLabel: '홈',
           tabBarIcon: HomeIcon,

@@ -12,8 +12,15 @@ export type RootStackParamList = {
   Tab: NavigatorScreenParams<TabParamList>;
 };
 
-export type TabParamList = {
+export type HomeStackParamList = {
   Home: undefined;
+  RecordFeeling: undefined;
+  RecordFeelingEmoji: undefined;
+  SelectChatbot: undefined;
+};
+
+export type TabParamList = {
+  HomeNavigator: undefined;
   Settings: {text: string};
   Chat: undefined;
 };
@@ -25,3 +32,6 @@ export type TabScreenProps<T extends keyof TabParamList> = CompositeScreenProps<
   BottomTabScreenProps<TabParamList, T>,
   RootStackScreenProps<keyof RootStackParamList>
 >;
+
+export type HomeStackScreenProps<T extends keyof HomeStackParamList> =
+  NativeStackScreenProps<HomeStackParamList, T>;

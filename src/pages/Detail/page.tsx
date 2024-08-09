@@ -1,8 +1,8 @@
 import React from 'react';
-import {SafeAreaView, Text, useColorScheme} from 'react-native';
+import {SafeAreaView, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import styles from './styles';
+import CustomText from '@shared/components/CustomText';
 
 const Page = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -13,9 +13,7 @@ const Page = () => {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <Text>
-        <Text style={styles.highlight}>Detail</Text> Page!!
-      </Text>
+      <CustomText>DetailPage</CustomText>
     </SafeAreaView>
   );
 };

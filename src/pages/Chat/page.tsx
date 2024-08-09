@@ -1,19 +1,16 @@
 import React, {useState} from 'react';
-import {
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import {Pressable, SafeAreaView, TextInput, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import ChatArea from '@widgets/ChatArea';
+import TabHeader from '@features/TabHeader';
+import {ChatBubbleProps} from '@entities/ChatBubble/types';
 
 import styles from './styles';
 
 const Page = () => {
   const [message, setMessage] = useState('');
-  const [chatMessages, setChatMessages] = useState([
+  const [chatMessages, setChatMessages] = useState<ChatBubbleProps[]>([
     {
       role: 'assistant',
       content: 'Hello, How can I help you today?',
@@ -56,40 +53,12 @@ const Page = () => {
   };
 
   const flexStretch = {flex: 1};
-  const colorWhite = {color: '#fff'};
 
   return (
     <SafeAreaView style={flexStretch}>
       <View style={flexStretch}>
-        {/* Chat Header */}
-        <View style={styles.chatHeader}>
-          <Text style={styles.chatHeaderTitle}>Chat</Text>
-        </View>
-
-        {/* Chat Area */}
-        <ScrollView>
-          {chatMessages.map((msg, idx) => {
-            return (
-              <View
-                style={[
-                  styles.chatBubble,
-                  msg.role === 'user' ? styles.userBubble : styles.astBubble,
-                ]}
-                key={idx}>
-                <Text
-                  style={[
-                    styles.chatDateTime,
-                    msg.role === 'assistant' && colorWhite,
-                  ]}>
-                  {msg.dateTime.toDateString()}
-                </Text>
-                <Text style={msg.role === 'assistant' && colorWhite}>
-                  {msg.content}
-                </Text>
-              </View>
-            );
-          })}
-        </ScrollView>
+        <TabHeader title="Chat" />
+        <ChatArea chatMessages={chatMessages} />
       </View>
 
       {/* Chat Input */}

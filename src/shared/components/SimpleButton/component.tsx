@@ -8,7 +8,11 @@ const SimpleButton = (props: SimpleButtonProps) => {
   const {title, onPress} = props;
 
   return (
-    <Pressable style={styles.button} onPress={onPress}>
+    <Pressable
+      style={({pressed}) => {
+        return [styles.button, pressed && styles.pressed];
+      }}
+      onPress={onPress}>
       <Text style={styles.basicText}>{title}</Text>
     </Pressable>
   );

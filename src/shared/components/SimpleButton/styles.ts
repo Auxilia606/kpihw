@@ -17,7 +17,9 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     borderWidth: 1,
     borderColor: '#000000',
+    backgroundColor: '#ffffff',
   },
+  pressed: {backgroundColor: '#aaaaaa'},
 });
 
 export default styles;

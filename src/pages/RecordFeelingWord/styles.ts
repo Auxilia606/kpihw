@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
     justifyContent: 'center',
+    paddingHorizontal: 20,
   },
   emotionList: {marginTop: 32, gap: 16},
   emotionItem: {

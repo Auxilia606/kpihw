@@ -48,7 +48,7 @@ const RecordFeelingWord = (
     <Wrapper>
       <HomeHeader navigation={navigation} />
       <View style={styles.textContainer}>
-        <CustomText fontSize="lg" textAlign="center">
+        <CustomText fontSize="lg">
           {'지금 느끼는 감정과\n가장 가까운 감정 단어는 무엇인가요?'}
         </CustomText>
         <View style={styles.emotionList}>

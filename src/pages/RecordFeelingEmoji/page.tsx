@@ -18,7 +18,9 @@ const RecordFeelingEmoji = (
     <Wrapper>
       <HomeHeader navigation={navigation} />
       <View style={styles.textContainer}>
-        <CustomText>지금 느끼는 감정을 선택해 주세요</CustomText>
+        <CustomText fontSize="lg" textAlign="center">
+          지금 느끼는 감정을 선택해 주세요
+        </CustomText>
         <View style={styles.buttonContainer}>
           <SimpleButton
             onPress={() => navigation.navigate('RecordFeelingEmoji')}

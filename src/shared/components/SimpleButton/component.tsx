@@ -5,12 +5,17 @@ import styles from './styles';
 import {SimpleButtonProps} from './types';
 
 const SimpleButton = (props: SimpleButtonProps) => {
-  const {title, onPress} = props;
+  const {title, onPress, disabled} = props;
 
   return (
     <Pressable
+      disabled={disabled}
       style={({pressed}) => {
-        return [styles.button, pressed && styles.pressed];
+        return [
+          styles.button,
+          disabled && styles.disabled,
+          pressed && styles.pressed,
+        ];
       }}
       onPress={onPress}>
       <Text style={styles.basicText}>{title}</Text>

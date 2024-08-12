@@ -3,7 +3,7 @@ import React from 'react';
 import {TemplateProps} from './types';
 
 const Template = (props: TemplateProps) => {
-  console.log(props);
+  console.dir(props);
   return <></>;
 };
 

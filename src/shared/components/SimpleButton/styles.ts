@@ -19,6 +19,10 @@ const styles = StyleSheet.create({
     borderColor: '#000000',
     backgroundColor: '#ffffff',
   },
+  disabled: {
+    backgroundColor: '#bbbbbb',
+    borderColor: '#aaaaaa',
+  },
   pressed: {backgroundColor: '#aaaaaa'},
 });
 

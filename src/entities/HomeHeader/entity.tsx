@@ -39,11 +39,13 @@ const HomeHeader = (props: HomeHeaderIconBaseProps) => {
     return () => backHandler.remove();
   }, [onPressBack]);
 
-  useFocusEffect(() => {
-    setTimeout(() => {
-      setHasStack(check());
-    }, 100);
-  });
+  useFocusEffect(
+    useCallback(() => {
+      setTimeout(() => {
+        setHasStack(check());
+      }, 100);
+    }, [check]),
+  );
 
   return (
     <View style={styles.wrapper}>

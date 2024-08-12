@@ -3,11 +3,15 @@ import {atom, useAtom} from 'jotai';
 
 import {Emotion} from '@entities/EmojiListItem';
 
-import {HomeTabAtomType} from './types';
+import {HomeHeaderAtom, HomeTabAtomType} from './types';
 
 const homeTabAtom = atom<HomeTabAtomType>({
   screenStack: [],
+});
+
+const homeHeaderAtom = atom<HomeHeaderAtom>({
   selectedEmoji: undefined,
+  progress: undefined,
 });
 
 export const useHomeTabAtom = () => {
@@ -32,12 +36,38 @@ export const useHomeTabAtom = () => {
     return !!value.screenStack.length;
   }, [value.screenStack.length]);
 
+  return {
+    push,
+    pop,
+    reset,
+    check,
+  };
+};
+
+export const useHomeHeaderAtom = () => {
+  const [value, setValue] = useAtom(homeHeaderAtom);
+
   const setEmotion = useCallback(
-    (emotion: Emotion) => {
-      value.selectedEmoji = emotion;
+    (emotion: Emotion | undefined) => {
+      setValue(prev => ({...prev, selectedEmoji: emotion}));
     },
-    [value],
+    [setValue],
   );
 
-  return {push, pop, reset, check, setEmotion};
+  const setProgress = useCallback(
+    (input: number | undefined) => {
+      setValue(prev => ({
+        ...prev,
+        progress: input && Math.max(Math.min(input, 1), 0),
+      }));
+    },
+    [setValue],
+  );
+
+  return {
+    setEmotion,
+    setProgress,
+    progress: value.progress,
+    selectedEmoji: value.selectedEmoji,
+  };
 };

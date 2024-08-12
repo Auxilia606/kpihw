@@ -1,15 +1,13 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  textContainer: {
-    flex: 1,
+  emojiContainer: {
+    width: 80,
+    height: 120,
+    alignItems: 'center',
     justifyContent: 'center',
   },
-  emojiList: {marginTop: 32},
-  buttonContainer: {
-    marginTop: 32,
-    gap: 40,
-  },
+  emojiIcon: {width: 48, height: 48},
 });
 
 export default styles;

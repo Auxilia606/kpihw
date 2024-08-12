@@ -2,6 +2,8 @@ import React from 'react';
 import {View} from 'react-native';
 
 import {HomeStackScreenProps} from '@pages/types';
+import EmojiList from '@widgets/EmojiList';
+import HomeHeader from '@entities/HomeHeader';
 import CustomText from '@shared/components/CustomText';
 import SimpleButton from '@shared/components/SimpleButton';
 import Wrapper from '@shared/components/Wrapper/component';
@@ -15,8 +17,14 @@ const RecordFeelingEmoji = (
 
   return (
     <Wrapper>
+      <HomeHeader navigation={navigation} />
       <View style={styles.textContainer}>
-        <CustomText>지금 느끼는 감정을 선택해 주세요</CustomText>
+        <CustomText fontSize="lg" textAlign="center">
+          지금 느끼는 감정을 선택해 주세요
+        </CustomText>
+        <View style={styles.emojiList}>
+          <EmojiList />
+        </View>
         <View style={styles.buttonContainer}>
           <SimpleButton
             onPress={() => navigation.navigate('RecordFeelingEmoji')}

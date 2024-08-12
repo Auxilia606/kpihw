@@ -10,6 +10,7 @@ import HomeStackNavigator from './HomeStackNavigator';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
+// const TabNavigator = (props: RootStackScreenProps<'Tab'>) => {
 const TabNavigator = () => {
   return (
     <Tab.Navigator

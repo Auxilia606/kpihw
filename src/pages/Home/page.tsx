@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {View} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import {
@@ -10,7 +10,7 @@ import {
 import {NativeStackNavigationEventMap} from '@react-navigation/native-stack';
 
 import {HomeStackScreenProps} from '@pages/types';
-import {useHomeTabAtom} from '@shared/atom/HomeTabAtom';
+import {useHomeHeaderAtom, useHomeTabAtom} from '@shared/atom/HomeTabAtom';
 import CustomText from '@shared/components/CustomText';
 import SimpleButton from '@shared/components/SimpleButton';
 import Wrapper from '@shared/components/Wrapper/component';
@@ -20,10 +20,14 @@ import styles from './styles';
 const Page = (props: HomeStackScreenProps<'Home'>) => {
   const {navigation} = props;
   const {reset} = useHomeTabAtom();
+  const {setProgress} = useHomeHeaderAtom();
 
-  useFocusEffect(() => {
-    reset();
-  });
+  useFocusEffect(
+    useCallback(() => {
+      reset();
+      setProgress(undefined);
+    }, [reset, setProgress]),
+  );
 
   useEffect(() => {
     let prevIndex = -1;

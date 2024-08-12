@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 
 import {HomeStackScreenProps} from '@pages/types';
 import HomeHeader from '@entities/HomeHeader';
+import {useHomeHeaderAtom} from '@shared/atom/HomeTabAtom';
 import CustomText from '@shared/components/CustomText';
 import SimpleButton from '@shared/components/SimpleButton';
 import Wrapper from '@shared/components/Wrapper/component';
@@ -11,6 +13,13 @@ import styles from './styles';
 
 const RecordFeeling = (props: HomeStackScreenProps<'RecordFeeling'>) => {
   const {navigation} = props;
+  const {setProgress} = useHomeHeaderAtom();
+
+  useFocusEffect(
+    useCallback(() => {
+      setProgress(undefined);
+    }, [setProgress]),
+  );
 
   return (
     <Wrapper>

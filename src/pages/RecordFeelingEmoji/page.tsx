@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 
 import {HomeStackScreenProps} from '@pages/types';
 import EmojiList from '@widgets/EmojiList';
 import HomeHeader from '@entities/HomeHeader';
+import {useHomeHeaderAtom} from '@shared/atom/HomeTabAtom';
 import CustomText from '@shared/components/CustomText';
 import SimpleButton from '@shared/components/SimpleButton';
 import Wrapper from '@shared/components/Wrapper/component';
@@ -14,6 +16,13 @@ const RecordFeelingEmoji = (
   props: HomeStackScreenProps<'RecordFeelingEmoji'>,
 ) => {
   const {navigation} = props;
+  const {setProgress, selectedEmoji} = useHomeHeaderAtom();
+
+  useFocusEffect(
+    useCallback(() => {
+      setProgress(0.33);
+    }, [setProgress]),
+  );
 
   return (
     <Wrapper>
@@ -27,6 +36,7 @@ const RecordFeelingEmoji = (
         </View>
         <View style={styles.buttonContainer}>
           <SimpleButton
+            disabled={!!selectedEmoji}
             onPress={() => navigation.navigate('RecordFeelingEmoji')}
             title="선택하기"
           />

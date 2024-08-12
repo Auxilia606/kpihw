@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {SafeAreaView, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useFocusEffect} from '@react-navigation/native';
@@ -16,13 +16,15 @@ const Page = (props: RootStackScreenProps<'Loading'>) => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  useFocusEffect(() => {
-    setTimeout(() => {
-      navigation.replace('Tab', {
-        screen: 'HomeNavigator',
-      });
-    }, 2000);
-  });
+  useFocusEffect(
+    useCallback(() => {
+      setTimeout(() => {
+        navigation.replace('Tab', {
+          screen: 'HomeNavigator',
+        });
+      }, 2000);
+    }, [navigation]),
+  );
 
   return (
     <SafeAreaView style={{...backgroundStyle, ...styles.container}}>

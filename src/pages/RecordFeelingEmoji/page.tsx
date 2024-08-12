@@ -36,8 +36,8 @@ const RecordFeelingEmoji = (
         </View>
         <View style={styles.buttonContainer}>
           <SimpleButton
-            disabled={!!selectedEmoji}
-            onPress={() => navigation.navigate('RecordFeelingEmoji')}
+            disabled={!selectedEmoji}
+            onPress={() => navigation.navigate('RecordFeelingWord')}
             title="선택하기"
           />
         </View>

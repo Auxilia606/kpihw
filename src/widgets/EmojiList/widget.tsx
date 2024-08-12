@@ -18,7 +18,7 @@ const EmojiList = () => {
       setData(prev =>
         prev.map((value, index) => {
           if (pressedIndex === index) {
-            setEmotion(value.isSelected ? value.title : undefined);
+            setEmotion(!value.isSelected ? value.title : undefined);
 
             return {...value, isSelected: !value.isSelected};
           } else if (!value.isSelected) {

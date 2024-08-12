@@ -16,6 +16,7 @@ export type HomeStackParamList = {
   Home: undefined;
   RecordFeeling: undefined;
   RecordFeelingEmoji: undefined;
+  RecordFeelingWord: undefined;
   SelectChatbot: undefined;
 };
 

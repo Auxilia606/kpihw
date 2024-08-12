@@ -1,4 +1,4 @@
-import {PressableProps, StyleProp, ViewStyle} from 'react-native';
+import {PressableProps, StyleProp, TextProps, ViewStyle} from 'react-native';
 
 export type SimpleButtonProps = {
   onPress?: () => void;
@@ -6,4 +6,5 @@ export type SimpleButtonProps = {
   pressedStyle?: ViewStyle;
   disabledStyle?: ViewStyle;
   style?: StyleProp<ViewStyle>;
-} & Pick<PressableProps, 'disabled'>;
+} & Pick<PressableProps, 'disabled'> &
+  Pick<TextProps, 'ellipsizeMode' | 'numberOfLines'>;

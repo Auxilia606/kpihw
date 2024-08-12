@@ -7,6 +7,7 @@ export type HomeTabAtomType = {
 
 export type HomeHeaderAtom = {
   selectedEmoji?: Emotion;
+  selectedEmotion?: {korName: string; engName: string};
   progress?: number;
 };
 

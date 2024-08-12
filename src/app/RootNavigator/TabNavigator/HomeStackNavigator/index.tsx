@@ -5,6 +5,7 @@ import Home from '@pages/Home';
 import RecordFeeling from '@pages/RecordFeeling';
 import RecordFeelingEmoji from '@pages/RecordFeelingEmoji';
 import RecordFeelingWord from '@pages/RecordFeelingWord/page';
+import RecordFeelingWordDetail from '@pages/RecordFeelingWordDetail';
 import SelectChatbot from '@pages/SelectChatbot';
 import {HomeStackParamList} from '@pages/types';
 import HomeTabProgress from '@widgets/HomeTabProgress';
@@ -31,6 +32,10 @@ const HomeStackNavigator = () => {
           component={RecordFeelingEmoji}
         />
         <Stack.Screen name="RecordFeelingWord" component={RecordFeelingWord} />
+        <Stack.Screen
+          name="RecordFeelingWordDetail"
+          component={RecordFeelingWordDetail}
+        />
         <Stack.Screen name="SelectChatbot" component={SelectChatbot} />
       </Stack.Navigator>
       <HomeTabProgress />

@@ -5,7 +5,16 @@ import styles from './styles';
 import {SimpleButtonProps} from './types';
 
 const SimpleButton = (props: SimpleButtonProps) => {
-  const {title, onPress, disabled, disabledStyle, pressedStyle, style} = props;
+  const {
+    title,
+    onPress,
+    disabled,
+    disabledStyle,
+    pressedStyle,
+    style,
+    ellipsizeMode,
+    numberOfLines,
+  } = props;
 
   return (
     <Pressable
@@ -21,7 +30,12 @@ const SimpleButton = (props: SimpleButtonProps) => {
         ];
       }}
       onPress={onPress}>
-      <Text style={styles.basicText}>{title}</Text>
+      <Text
+        style={styles.basicText}
+        ellipsizeMode={ellipsizeMode}
+        numberOfLines={numberOfLines}>
+        {title}
+      </Text>
     </Pressable>
   );
 };

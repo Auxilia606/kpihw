@@ -11,14 +11,14 @@ const EmojiList = () => {
   const [data, setData] = useState(
     emojiItemList.map(value => ({...value, isSelected: false})),
   );
-  const {setEmotion} = useHomeHeaderAtom();
+  const {setEmoji} = useHomeHeaderAtom();
 
   const onPressItem = useCallback(
     (pressedIndex: number) => {
       setData(prev =>
         prev.map((value, index) => {
           if (pressedIndex === index) {
-            setEmotion(!value.isSelected ? value.title : undefined);
+            setEmoji(!value.isSelected ? value.title : undefined);
 
             return {...value, isSelected: !value.isSelected};
           } else if (!value.isSelected) {
@@ -29,7 +29,7 @@ const EmojiList = () => {
         }),
       );
     },
-    [setEmotion],
+    [setEmoji],
   );
 
   return (

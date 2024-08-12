@@ -17,7 +17,7 @@ const RecordFeelingWord = (
   props: HomeStackScreenProps<'RecordFeelingWord'>,
 ) => {
   const {navigation} = props;
-  const {setProgress, selectedEmoji} = useHomeHeaderAtom();
+  const {setProgress, selectedEmoji, setEmotion} = useHomeHeaderAtom();
   const [subEmotionList, setSubEmotionList] = useState(
     (
       emotionList.find(emotion => emotion.korName === selectedEmoji)?.sub || []
@@ -66,7 +66,10 @@ const RecordFeelingWord = (
         <View style={styles.buttonContainer}>
           <SimpleButton
             disabled={!subEmotionList.some(value => value.isSelected)}
-            onPress={() => navigation.navigate('RecordFeelingEmoji')}
+            onPress={() => {
+              navigation.navigate('RecordFeelingWordDetail');
+              setEmotion(subEmotionList.find(value => value.isSelected));
+            }}
             title="선택하기"
           />
         </View>

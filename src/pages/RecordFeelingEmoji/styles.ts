@@ -2,10 +2,10 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   textContainer: {
-    gap: 12,
     flex: 1,
     justifyContent: 'center',
   },
+  emojiList: {marginTop: 32},
   buttonContainer: {
     marginTop: 32,
     gap: 40,

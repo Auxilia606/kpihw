@@ -1,13 +1,17 @@
 import {useCallback} from 'react';
+import {atom, useAtom} from 'jotai';
+
+import {Emotion} from '@entities/EmojiListItem';
 
 import {HomeTabAtomType} from './types';
 
-import {atom, useAtomValue} from 'jotai';
-
-const homeTabAtom = atom<HomeTabAtomType>({screenStack: []});
+const homeTabAtom = atom<HomeTabAtomType>({
+  screenStack: [],
+  selectedEmoji: undefined,
+});
 
 export const useHomeTabAtom = () => {
-  const value = useAtomValue(homeTabAtom);
+  const [value] = useAtom(homeTabAtom);
 
   const push = useCallback(
     (screen: string) => {
@@ -28,5 +32,12 @@ export const useHomeTabAtom = () => {
     return !!value.screenStack.length;
   }, [value.screenStack.length]);
 
-  return {push, pop, reset, check};
+  const setEmotion = useCallback(
+    (emotion: Emotion) => {
+      value.selectedEmoji = emotion;
+    },
+    [value],
+  );
+
+  return {push, pop, reset, check, setEmotion};
 };

@@ -11,10 +11,12 @@ const CustomText = (props: CustomTextProps) => {
     fontWeight = 'normal',
     color = '#000000',
     textAlign = 'auto',
+    style,
   } = props;
 
   return (
-    <Text style={[styles[fontSize], styles[fontWeight], {color, textAlign}]}>
+    <Text
+      style={[styles[fontSize], styles[fontWeight], {color, textAlign}, style]}>
       {children}
     </Text>
   );

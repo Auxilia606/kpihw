@@ -37,4 +37,7 @@ export type TabScreenProps<T extends keyof TabParamList> = CompositeScreenProps<
 >;
 
 export type HomeStackScreenProps<T extends keyof HomeStackParamList> =
-  NativeStackScreenProps<HomeStackParamList, T>;
+  CompositeScreenProps<
+    NativeStackScreenProps<HomeStackParamList, T>,
+    BottomTabScreenProps<TabParamList, 'HomeNavigator'>
+  >;

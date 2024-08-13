@@ -79,7 +79,7 @@ const RecordFeelingWordDetail = (
         </View>
         <View style={styles.buttonContainer}>
           <SimpleButton
-            onPress={() => navigation.navigate('RecordFeelingEmoji')}
+            onPress={() => navigation.navigate('MakeEmotionBead')}
             title="선택 완료"
           />
         </View>

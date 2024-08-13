@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Home from '@pages/Home';
+import MakeEmotionBead from '@pages/MakeEmotionBead';
 import RecordFeeling from '@pages/RecordFeeling';
 import RecordFeelingEmoji from '@pages/RecordFeelingEmoji';
 import RecordFeelingWord from '@pages/RecordFeelingWord/page';
@@ -36,6 +37,7 @@ const HomeStackNavigator = () => {
           name="RecordFeelingWordDetail"
           component={RecordFeelingWordDetail}
         />
+        <Stack.Screen name="MakeEmotionBead" component={MakeEmotionBead} />
         <Stack.Screen name="SelectChatbot" component={SelectChatbot} />
       </Stack.Navigator>
       <HomeTabProgress />

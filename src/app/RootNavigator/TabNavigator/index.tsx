@@ -18,12 +18,12 @@ const TabNavigator = () => {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          height: 48,
+          height: 60,
         },
         tabBarItemStyle: {justifyContent: 'center'},
         tabBarIconStyle: {display: 'none'},
         tabBarLabelStyle: {
-          fontSize: 20,
+          fontSize: 16,
           letterSpacing: -20 * 0.05,
           fontWeight: '500',
         },

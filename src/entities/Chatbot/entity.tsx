@@ -1,6 +1,9 @@
 import React from 'react';
 import {Image, Pressable, Text, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
+import {RootStackParamList} from '@pages/types';
 import Lock from '@shared/assets/image/bx-lock.png';
 
 import styles from './styles';
@@ -8,10 +11,12 @@ import {ChatbotProps} from './types';
 
 const Chatbot = (props: ChatbotProps) => {
   const {name, description, profile, type} = props;
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
     <Pressable
-      // onPress={() => navigation.navigate('Chat')}
+      onPress={() => navigation.navigate('Tab', {screen: 'Chat'})}
       style={[styles.chatbot, type === 'unlock' && styles.chatbotUnlock]}>
       <View
         style={[

@@ -40,6 +40,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: 12,
   },
+  modalContent: {
+    alignItems: 'center',
+    width: 256,
+    height: 224,
+    paddingVertical: 32,
+    justifyContent: 'space-between',
+  },
+  modalImage: {width: 55, height: 55},
 });
 
 export default styles;

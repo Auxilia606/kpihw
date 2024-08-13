@@ -3,6 +3,7 @@ import {Image, ScrollView, View} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 
 import {HomeStackScreenProps} from '@pages/types';
+import BaseModal from '@entities/BaseModal/entity';
 import TextInputLine from '@entities/TextInputLine';
 import Bead from '@shared/assets/image/Bead.png';
 import Brain from '@shared/assets/image/Brain.png';
@@ -18,8 +19,17 @@ const MakeEmotionBead = (props: HomeStackScreenProps<'MakeEmotionBead'>) => {
   const {navigation} = props;
   const {setProgress, selectedEmotion} = useHomeHeaderAtom();
   const [text, setText] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const onPressSubmit = () => {};
+  const onPressSubmit = () => {
+    setModalVisible(true);
+  };
+
+  const onPressModal = () => {
+    setModalVisible(false);
+    navigation.popToTop();
+    navigation.navigate('Chat');
+  };
 
   useFocusEffect(
     useCallback(() => {
@@ -56,6 +66,17 @@ const MakeEmotionBead = (props: HomeStackScreenProps<'MakeEmotionBead'>) => {
           />
         </View>
       </ScrollView>
+      <BaseModal visible={modalVisible} contentStyle={styles.modalContent}>
+        <CustomText fontSize="lg" fontWeight="bold">
+          감정구슬을 저장했어요
+        </CustomText>
+        <Image style={styles.modalImage} source={Dizzy} />
+        <SimpleButton
+          style={styles.submitButton}
+          title="확인"
+          onPress={onPressModal}
+        />
+      </BaseModal>
     </Wrapper>
   );
 };

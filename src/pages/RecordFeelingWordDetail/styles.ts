@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
   emotionList: {marginTop: 32, gap: 16},
   emotionItem: {
     backgroundColor: '#D9D9D9',
-    width: 200,
+    width: 160,
+    paddingHorizontal: 20,
     borderWidth: 0,
     borderRadius: 0,
   },
@@ -18,6 +19,18 @@ const styles = StyleSheet.create({
     marginTop: 32,
     gap: 40,
   },
+  emotionWord: {
+    marginTop: 16,
+    backgroundColor: '#FFB21D',
+    alignItems: 'center',
+    gap: 4,
+    alignSelf: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    width: 240,
+  },
+  listContainer: {gap: 4, alignItems: 'center'},
+  listColumnWrapper: {gap: 4},
 });
 
 export default styles;

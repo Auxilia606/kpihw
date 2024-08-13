@@ -11,6 +11,7 @@ const homeTabAtom = atom<HomeTabAtomType>({
 
 const homeHeaderAtom = atom<HomeHeaderAtom>({
   selectedEmoji: undefined,
+  selectedEmotion: undefined,
   progress: undefined,
 });
 
@@ -47,9 +48,16 @@ export const useHomeTabAtom = () => {
 export const useHomeHeaderAtom = () => {
   const [value, setValue] = useAtom(homeHeaderAtom);
 
-  const setEmotion = useCallback(
+  const setEmoji = useCallback(
     (emotion: Emotion | undefined) => {
       setValue(prev => ({...prev, selectedEmoji: emotion}));
+    },
+    [setValue],
+  );
+
+  const setEmotion = useCallback(
+    (emotion: HomeHeaderAtom['selectedEmotion']) => {
+      setValue(prev => ({...prev, selectedEmotion: emotion}));
     },
     [setValue],
   );
@@ -65,9 +73,11 @@ export const useHomeHeaderAtom = () => {
   );
 
   return {
+    setEmoji,
     setEmotion,
     setProgress,
     progress: value.progress,
     selectedEmoji: value.selectedEmoji,
+    selectedEmotion: value.selectedEmotion,
   };
 };

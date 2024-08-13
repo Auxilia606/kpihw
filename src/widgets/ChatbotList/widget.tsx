@@ -1,11 +1,10 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
+import {MasonryFlashList} from '@shopify/flash-list';
 
 import Chatbot from '@entities/Chatbot/entity';
 
 import {ChatbotListProps} from './types';
-
-import {MasonryFlashList} from '@shopify/flash-list';
 
 const ChatbotList = (props: ChatbotListProps) => {
   const {chatbotList} = props;

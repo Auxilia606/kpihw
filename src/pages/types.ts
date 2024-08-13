@@ -18,6 +18,7 @@ export type HomeStackParamList = {
   RecordFeelingEmoji: undefined;
   RecordFeelingWord: undefined;
   RecordFeelingWordDetail: undefined;
+  MakeEmotionBead: undefined;
   SelectChatbot: undefined;
 };
 
@@ -36,4 +37,7 @@ export type TabScreenProps<T extends keyof TabParamList> = CompositeScreenProps<
 >;
 
 export type HomeStackScreenProps<T extends keyof HomeStackParamList> =
-  NativeStackScreenProps<HomeStackParamList, T>;
+  CompositeScreenProps<
+    NativeStackScreenProps<HomeStackParamList, T>,
+    BottomTabScreenProps<TabParamList, 'HomeNavigator'>
+  >;

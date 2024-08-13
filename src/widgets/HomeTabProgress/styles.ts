@@ -6,6 +6,10 @@ const styles = StyleSheet.create({
     width: Dimensions.get('screen').width,
     height: 30,
     alignItems: 'center',
+    paddingHorizontal: '10%',
+  },
+  label: {
+    alignSelf: 'flex-start',
   },
 });
 

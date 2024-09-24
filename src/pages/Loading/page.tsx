@@ -19,17 +19,25 @@ const Page = (props: RootStackScreenProps<'Loading'>) => {
   useFocusEffect(
     useCallback(() => {
       setTimeout(() => {
-        navigation.replace('Tab', {
-          screen: 'HomeNavigator',
-        });
+        navigation.replace('Login');
+        // navigation.replace('Tab', {
+        //   screen: 'HomeNavigator',
+        // });
       }, 2000);
     }, [navigation]),
   );
 
   return (
     <SafeAreaView style={{...backgroundStyle, ...styles.container}}>
-      <CustomText fontSize="lg" fontWeight="bold" color="#ffffff">
-        KPIHW
+      <CustomText
+        fontSize="lg"
+        fontWeight="bold"
+        color="#ffffff"
+        textAlign="center">
+        {'UNDERSTAND YOURSELF,\nSHAPE YOUR WORLD'}
+      </CustomText>
+      <CustomText fontSize="xl" fontWeight="bold" color="#ffffff">
+        Neuro Mingle
       </CustomText>
     </SafeAreaView>
   );

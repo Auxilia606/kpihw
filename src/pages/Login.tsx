@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import {RootStackScreenProps} from '@pages/types';
 import BaseInput from '@entities/BaseInput';
-import useAuthLogin from '@shared/api/auth/login';
+import useApiAuthLogin from '@shared/api/auth/login';
 import Checkbox from '@shared/components/Checkbox';
 import CustomText from '@shared/components/CustomText';
 import Wrapper from '@shared/components/Wrapper';
@@ -22,7 +22,7 @@ const Login = (props: RootStackScreenProps<'Login'>) => {
     setValue,
   } = useForm();
 
-  const {mutateAsync} = useAuthLogin();
+  const {mutateAsync} = useApiAuthLogin();
   const [errorMessage, setErrorMessage] = useState('');
   const [saveId, setSaveId] = useState(false);
 

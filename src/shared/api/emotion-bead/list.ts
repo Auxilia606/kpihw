@@ -40,11 +40,11 @@ const request = (query: ReqDTO) => {
   );
 };
 
-const useEmotionBeadList = (query: ReqDTO) => {
+const useApiEmotionBeadList = (query: ReqDTO) => {
   return useQuery({
     queryFn: () => request(query),
     queryKey: ['emotion-bead', 'list', query],
   });
 };
 
-export default useEmotionBeadList;
+export default useApiEmotionBeadList;

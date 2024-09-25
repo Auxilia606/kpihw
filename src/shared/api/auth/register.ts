@@ -1,4 +1,4 @@
-import {api} from '../config';
+import {api} from '@shared/configuration/api';
 
 import {useMutation} from '@tanstack/react-query';
 
@@ -12,10 +12,10 @@ const request = (body: ReqDTO) => {
   return api.post('/auth/register', body);
 };
 
-const useAuthRegister = () => {
+const useApiAuthRegister = () => {
   return useMutation({
     mutationFn: (body: ReqDTO) => request(body),
   });
 };
 
-export default useAuthRegister;
+export default useApiAuthRegister;

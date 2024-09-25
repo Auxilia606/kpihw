@@ -26,10 +26,10 @@ const request = (body: ReqDTO) => {
   return api.post<ResDTO>('/auth/login', body);
 };
 
-const useAuthLogin = () => {
+const useApiAuthLogin = () => {
   return useMutation({
     mutationFn: (body: ReqDTO) => request(body),
   });
 };
 
-export default useAuthLogin;
+export default useApiAuthLogin;

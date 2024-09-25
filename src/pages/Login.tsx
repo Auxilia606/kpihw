@@ -65,6 +65,7 @@ const Login = (props: RootStackScreenProps<'Login'>) => {
 
       if (userId) {
         setValue('email', userId);
+        setSaveId(true);
       }
     })();
   }, [getData, setValue]);

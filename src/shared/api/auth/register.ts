@@ -8,10 +8,8 @@ type ReqDTO = {
   password: string; // 'dweax123!@#';
 };
 
-const request = async (body: ReqDTO) => {
-  const {data} = await api.post('/auth/register', body);
-
-  return data;
+const request = (body: ReqDTO) => {
+  return api.post('/auth/register', body);
 };
 
 const useAuthRegister = () => {

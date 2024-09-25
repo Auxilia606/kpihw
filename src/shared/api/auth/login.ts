@@ -7,12 +7,8 @@ type ReqDTO = {
   password: string; // 'dweax123!@#';
 };
 
-const request = async (body: ReqDTO) => {
-  const {data} = await api.post('/auth/login', body);
-
-  console.log(data);
-
-  return data;
+const request = (body: ReqDTO) => {
+  return api.post('/auth/login', body);
 };
 
 const useAuthLogin = () => {

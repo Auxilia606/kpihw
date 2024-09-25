@@ -27,6 +27,8 @@ export type TabParamList = {
   HomeNavigator: undefined;
   Settings: {text: string};
   Chat: undefined;
+  EmotionBeadList: undefined;
+  ContentList: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

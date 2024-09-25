@@ -1,7 +1,8 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import Chat from '@pages/Chat';
+import ContentList from '@pages/ContentList';
+import EmotionBeadList from '@pages/EmotionBeadList';
 import Settings from '@pages/Settings';
 import {TabParamList} from '@pages/types';
 
@@ -36,10 +37,17 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Chat"
-        component={Chat}
+        name="EmotionBeadList"
+        component={EmotionBeadList}
         options={{
-          tabBarLabel: '챗',
+          tabBarLabel: '감정구슬',
+        }}
+      />
+      <Tab.Screen
+        name="ContentList"
+        component={ContentList}
+        options={{
+          tabBarLabel: '컨텐츠',
         }}
       />
       <Tab.Screen

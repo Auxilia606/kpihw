@@ -21,11 +21,7 @@ const Loading = (props: RootStackScreenProps<'Loading'>) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <CustomText
-        fontSize="lg"
-        fontWeight="bold"
-        color="#ffffff"
-        textAlign="center">
+      <CustomText fontSize="lg" fontWeight="bold" textAlign="center">
         {'UNDERSTAND YOURSELF,\nSHAPE YOUR WORLD'}
       </CustomText>
       <CustomText fontSize="xl" fontWeight="bold">

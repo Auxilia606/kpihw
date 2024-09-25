@@ -42,3 +42,4 @@ const styles = StyleSheet.create({
 });
 
 export default CustomText;
+export {styles as fontStyles};

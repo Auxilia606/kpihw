@@ -9,7 +9,8 @@ import useAuthLogin from '@shared/api/auth/login';
 import Checkbox from '@shared/components/Checkbox';
 import CustomText from '@shared/components/CustomText';
 import Wrapper from '@shared/components/Wrapper';
-import useStorage from '@shared/hooks/useAsyncStorage';
+import useEncryptedStorage from '@shared/hooks/useEncryptedStorage';
+import useStorage from '@shared/hooks/useStorage';
 
 const Login = (props: RootStackScreenProps<'Login'>) => {
   const {navigation} = props;
@@ -26,10 +27,14 @@ const Login = (props: RootStackScreenProps<'Login'>) => {
   const [saveId, setSaveId] = useState(false);
 
   const {getData, setData, removeData} = useStorage();
+  const {setEData} = useEncryptedStorage();
 
   const onPressLogin = handleSubmit(async data => {
     try {
-      await mutateAsync({email: data.email, password: data.password});
+      const response = await mutateAsync({
+        email: data.email,
+        password: data.password,
+      });
 
       if (saveId) {
         setData('userId', data.email);
@@ -37,11 +42,13 @@ const Login = (props: RootStackScreenProps<'Login'>) => {
         removeData('userId');
       }
 
+      setEData('token', response.data.token);
+
       navigation.replace('Tab', {
         screen: 'HomeNavigator',
       });
     } catch (error) {
-      console.log('[ERROR] 로그인 에러', error);
+      console.error('[ERROR] 로그인 에러', error);
       if (!axios.isAxiosError(error)) {
         return;
       }

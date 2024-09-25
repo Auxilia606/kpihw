@@ -3,7 +3,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface IStorage {
   userId?: string;
-  token?: string;
 }
 
 const useStorage = () => {
@@ -21,7 +20,7 @@ const useStorage = () => {
 
         return JSON.parse(rawData);
       } catch (error) {
-        console.log('[ERROR] AsyncStorage 에러', error);
+        console.error('[ERROR] AsyncStorage 에러', error);
 
         return;
       }

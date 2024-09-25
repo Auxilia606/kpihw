@@ -10,7 +10,7 @@ module.exports = {
       {
         groups: [
           // Packages `react` related packages come first.
-          ['^react', '^@react', '^axios', 'jotai'],
+          ['^react', '^@react', '^axios', 'jotai', '@shopify'],
           // ["^axios", "^antd", "^@ant"],
           // Internal packages.
           ['@app', '@pages', '@widgets', '@features', '@entities', '@shared'],

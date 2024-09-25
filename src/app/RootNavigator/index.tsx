@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Detail from '@pages/Detail';
 import Loading from '@pages/Loading';
+import Login from '@pages/Login';
 import Main from '@pages/Main';
 import {RootStackParamList} from '@pages/types';
 
@@ -28,6 +29,13 @@ const RootNavigator = () => {
         <Stack.Screen
           name="Loading"
           component={Loading}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
           options={{
             headerShown: false,
           }}

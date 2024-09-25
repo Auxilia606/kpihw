@@ -5,7 +5,7 @@ import Home from '@pages/Home';
 import MakeEmotionBead from '@pages/MakeEmotionBead';
 import RecordFeeling from '@pages/RecordFeeling';
 import RecordFeelingEmoji from '@pages/RecordFeelingEmoji';
-import RecordFeelingWord from '@pages/RecordFeelingWord/page';
+import RecordFeelingWord from '@pages/RecordFeelingWord';
 import RecordFeelingWordDetail from '@pages/RecordFeelingWordDetail';
 import SelectChatbot from '@pages/SelectChatbot';
 import {HomeStackParamList} from '@pages/types';

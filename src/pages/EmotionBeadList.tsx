@@ -1,5 +1,7 @@
 import React, {useMemo} from 'react';
+import {StyleSheet, View} from 'react-native';
 
+import BeadList from '@widgets/BeadList';
 import useApiEmotionBeadList from '@shared/api/emotion-bead/list';
 import CustomText from '@shared/components/CustomText';
 import Wrapper from '@shared/components/Wrapper';
@@ -17,13 +19,18 @@ const EmotionBeadList = (props: EmotionBeadListProps) => {
     return data.data.data;
   }, [data]);
 
-  console.log(emotionList);
-
   return (
     <Wrapper>
-      <CustomText>감정구슬 모아보기</CustomText>
+      <View style={styles.container}>
+        <CustomText fontSize="xl">감정구슬 모아보기</CustomText>
+        <BeadList data={emotionList} />
+      </View>
     </Wrapper>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {paddingHorizontal: 16, marginTop: 16},
+});
 
 export default EmotionBeadList;

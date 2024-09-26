@@ -13,7 +13,7 @@ type ResDTO = {
   current: number; // 1;
 };
 
-type EmotionBead = {
+export type EmotionBead = {
   userId: string;
   emotion: {
     keyword: string[]; // ['상담', '스트레스', '배 아픔'];

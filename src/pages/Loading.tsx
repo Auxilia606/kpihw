@@ -4,19 +4,29 @@ import {useFocusEffect} from '@react-navigation/native';
 
 import {RootStackScreenProps} from '@pages/types';
 import CustomText from '@shared/components/CustomText';
+import useEncryptedStorage from '@shared/hooks/useEncryptedStorage';
 
 const Loading = (props: RootStackScreenProps<'Loading'>) => {
   const {navigation} = props;
 
+  const {getEData} = useEncryptedStorage();
+
   useFocusEffect(
     useCallback(() => {
       setTimeout(() => {
-        navigation.replace('Login');
-        // navigation.replace('Tab', {
-        //   screen: 'HomeNavigator',
-        // });
+        (async () => {
+          const token = await getEData('token');
+
+          if (!token) {
+            navigation.replace('Login');
+          } else {
+            navigation.replace('Tab', {
+              screen: 'HomeNavigator',
+            });
+          }
+        })();
       }, 2000);
-    }, [navigation]),
+    }, [getEData, navigation]),
   );
 
   return (

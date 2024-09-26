@@ -1,6 +1,6 @@
-import {api} from '@shared/configuration/api';
-
 import {useQuery} from '@tanstack/react-query';
+
+import {api} from '@shared/configuration/api';
 
 type ReqDTO = {
   page: string;

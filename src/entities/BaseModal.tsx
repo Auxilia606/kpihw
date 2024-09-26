@@ -1,37 +1,57 @@
-import React from 'react';
+import React, {forwardRef, useImperativeHandle, useRef, useState} from 'react';
 import {PropsWithChildren} from 'react';
-import {Modal, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {Modal, ModalProps, Portal} from 'react-native-paper';
 
-type BaseModalProps = PropsWithChildren & {
-  visible: boolean;
-  contentStyle?: StyleProp<ViewStyle>;
+type BaseModalProps = PropsWithChildren &
+  Omit<ModalProps, 'visible' | 'onDismiss'>;
+
+export type BaseModalControl = {
+  show(): void;
+  hide(): void;
 };
 
-const BaseModal = (props: BaseModalProps) => {
-  const {children, visible, contentStyle} = props;
+const BaseModal = forwardRef<BaseModalControl, BaseModalProps>(
+  (props: BaseModalProps, ref) => {
+    const {children, ...modalProps} = props;
+    const [visible, setVisible] = useState(false); // 모달의 열림/닫힘 상태 관리
 
-  return (
-    <Modal animationType="fade" transparent visible={visible}>
-      <View style={styles.modal}>
-        <View style={[styles.content, contentStyle]}>{children}</View>
-      </View>
-    </Modal>
-  );
-};
+    useImperativeHandle(ref, () => ({
+      show() {
+        setVisible(true);
+      },
+      hide() {
+        setVisible(false);
+      },
+    }));
+
+    return (
+      <Portal>
+        <Modal
+          visible={visible}
+          onDismiss={() => setVisible(false)}
+          {...modalProps}
+          contentContainerStyle={[
+            styles.modalContent,
+            modalProps.contentContainerStyle,
+          ]}>
+          {children}
+        </Modal>
+      </Portal>
+    );
+  },
+);
 
 const styles = StyleSheet.create({
-  modal: {
-    flex: 1,
-    backgroundColor: '#00000066',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  content: {
+  modalContent: {
     backgroundColor: '#ffffff',
-    padding: 16,
-    borderRadius: 8,
-    elevation: 5,
   },
 });
+
+export const useBaseModalControl = () => {
+  const modalRef = useRef<BaseModalControl>(null);
+
+  return {modalRef};
+};
 
 export default BaseModal;

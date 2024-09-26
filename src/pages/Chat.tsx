@@ -1,10 +1,15 @@
 import React, {useState} from 'react';
 import {Pressable, StyleSheet, TextInput, View} from 'react-native';
+import {Button} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import ChatArea from '@widgets/ChatArea';
 import TabHeader from '@features/TabHeader';
+import {useBaseModalControl} from '@entities/BaseModal';
+import ConfirmModal from '@entities/ConfirmModal';
+import LoadingModal from '@entities/LoadingModal';
 import useApiChat, {MessageDTO} from '@shared/api/chat';
+import useApiChatSummary from '@shared/api/chat/summary';
 import Wrapper from '@shared/components/Wrapper';
 
 import {HomeStackScreenProps} from './types';
@@ -12,8 +17,10 @@ import {HomeStackScreenProps} from './types';
 const Chat = (props: HomeStackScreenProps<'Chat'>) => {
   const {route} = props;
   const [message, setMessage] = useState('');
-  const {mutateAsync, isPending} = useApiChat();
+  const apiChat = useApiChat();
+  const apiChatSummary = useApiChatSummary();
   const [chatMessages, setChatMessages] = useState<MessageDTO[]>([]);
+  const {modalRef} = useBaseModalControl();
 
   const submitMessage = async () => {
     setMessage('');
@@ -29,12 +36,24 @@ const Chat = (props: HomeStackScreenProps<'Chat'>) => {
       ];
     });
 
-    const data = await mutateAsync({
+    const data = await apiChat.mutateAsync({
       chatId: route.params?.id,
       userMessage: message,
     });
 
     setChatMessages(data.data.data);
+  };
+
+  const onPressClose = () => {
+    modalRef.current?.show();
+  };
+
+  const onConfirmSaveModal = async () => {
+    try {
+      await apiChatSummary.mutateAsync({chatId: route.params?.id});
+    } catch (error) {
+      console.error('[ERROR] 요약 저장 에러');
+    }
   };
 
   return (
@@ -43,7 +62,6 @@ const Chat = (props: HomeStackScreenProps<'Chat'>) => {
         <TabHeader title="Chat" />
         <ChatArea chatMessages={chatMessages} />
       </View>
-
       {/* Chat Input */}
       <View style={styles.chatInputWrapper}>
         <TextInput
@@ -56,16 +74,26 @@ const Chat = (props: HomeStackScreenProps<'Chat'>) => {
           style={styles.chatInput}
         />
         <Pressable
-          disabled={isPending}
+          disabled={apiChat.isPending}
           style={styles.sendIcon}
           onPress={() => submitMessage()}>
           <MaterialCommunityIcons
             name="send"
-            color={isPending ? '#bbbbbb' : '#EF458E'}
+            color={apiChat.isPending ? '#bbbbbb' : '#EF458E'}
             size={20}
           />
         </Pressable>
+        <Button mode="contained" onPress={onPressClose}>
+          대화 마치기
+        </Button>
       </View>
+      <ConfirmModal
+        modalRef={modalRef}
+        title="대화 마치기"
+        description="대화를 마치면 해당 대화를 저장합니다. 계속하시겠어요?"
+        onConfirm={onConfirmSaveModal}
+      />
+      <LoadingModal isLoading={apiChatSummary.isPending} />
     </Wrapper>
   );
 };
@@ -74,7 +102,8 @@ const styles = StyleSheet.create({
   container: {flex: 1},
   // Chat Input
   chatInputWrapper: {
-    padding: 14,
+    padding: 20,
+    gap: 16,
   },
   chatInput: {
     minHeight: 40,

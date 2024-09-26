@@ -64,7 +64,7 @@ const MakeEmotionBead = (props: HomeStackScreenProps<'MakeEmotionBead'>) => {
           />
         </View>
       </ScrollView>
-      <BaseModal ref={modalRef} contentStyle={styles.modalContent}>
+      <BaseModal ref={modalRef} contentContainerStyle={styles.modalContent}>
         <CustomText fontSize="lg" fontWeight="bold">
           감정구슬을 저장했어요
         </CustomText>

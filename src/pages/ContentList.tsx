@@ -10,7 +10,7 @@ const ContentList = (props: ContentListProps) => {
 
   return (
     <Wrapper>
-      <CustomText>감정구슬 모아보기</CustomText>
+      <CustomText>컨텐츠 모아보기 준비중</CustomText>
     </Wrapper>
   );
 };

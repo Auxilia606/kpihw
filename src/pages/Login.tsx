@@ -46,6 +46,7 @@ const Login = (props: RootStackScreenProps<'Login'>) => {
 
       navigation.replace('Tab', {
         screen: 'HomeNavigator',
+        params: {screen: 'Home'},
       });
     } catch (error) {
       console.error('[ERROR] 로그인 에러', error);

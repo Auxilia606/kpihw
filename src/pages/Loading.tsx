@@ -17,13 +17,15 @@ const Loading = (props: RootStackScreenProps<'Loading'>) => {
         (async () => {
           const token = await getEData('token');
 
-          if (!token) {
-            navigation.replace('Login');
-          } else {
-            navigation.replace('Tab', {
-              screen: 'HomeNavigator',
-            });
-          }
+          console.log(token);
+          navigation.replace('Login');
+          // if (!token) {
+          //   navigation.replace('Login');
+          // } else {
+          //   navigation.replace('Tab', {
+          //     screen: 'HomeNavigator',
+          //   });
+          // }
         })();
       }, 2000);
     }, [getEData, navigation]),

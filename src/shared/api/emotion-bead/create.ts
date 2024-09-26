@@ -6,7 +6,7 @@ import {ChatSummaryDTO} from '../chat/summary';
 
 type ReqDTO = {
   emotion: ChatSummaryDTO;
-  chatId: '66ed071c1cc5f91696da429b';
+  chatId: string;
 };
 
 const request = (body: ReqDTO) => {

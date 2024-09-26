@@ -15,20 +15,12 @@ export type ChatSummaryDTO = {
   summary: string; //  'testuser01님이 사내 분위기를 띄우는 방법에 대해 상담을 요청했습니다.';
   emotion: string; //  '기대';
   strength: string; //  '2';
-  combined_emotions: [
-    {
-      emotion1: string; //  '기대';
-      emotion2: string; //  '기쁨';
-      combined_emotion: string; //  '환희';
-      strength: string; //  '3';
-    },
-    {
-      emotion1: string; //  '기쁨';
-      emotion2: string; //  '신뢰';
-      combined_emotion: string; //  '사랑';
-      strength: string; //  '3';
-    },
-  ];
+  combined_emotions: {
+    emotion1: string; //  '기대';
+    emotion2: string; //  '기쁨';
+    combined_emotion: string; //  '환희';
+    strength: string; //  '3';
+  }[];
 };
 
 const request = (body: ReqDTO) => {

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const api = axios.create({
   baseURL: Config.API_URL + '/api',
-  timeout: 3000,
+  timeout: 30000,
 });
 
 api.interceptors.request.use(async value => {

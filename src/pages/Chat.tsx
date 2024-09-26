@@ -4,12 +4,13 @@ import {Button} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import ChatArea from '@widgets/ChatArea';
+import ChatSummaryModal from '@widgets/ChatSummaryModal';
 import TabHeader from '@features/TabHeader';
 import {useBaseModalControl} from '@entities/BaseModal';
 import ConfirmModal from '@entities/ConfirmModal';
 import LoadingModal from '@entities/LoadingModal';
 import useApiChat, {MessageDTO} from '@shared/api/chat';
-import useApiChatSummary from '@shared/api/chat/summary';
+import useApiChatSummary, {ChatSummaryDTO} from '@shared/api/chat/summary';
 import Wrapper from '@shared/components/Wrapper';
 
 import {HomeStackScreenProps} from './types';
@@ -20,7 +21,9 @@ const Chat = (props: HomeStackScreenProps<'Chat'>) => {
   const apiChat = useApiChat();
   const apiChatSummary = useApiChatSummary();
   const [chatMessages, setChatMessages] = useState<MessageDTO[]>([]);
+  const [chatSummary, setChatSummary] = useState<ChatSummaryDTO>();
   const {modalRef} = useBaseModalControl();
+  const {modalRef: summaryModalRef} = useBaseModalControl();
 
   const submitMessage = async () => {
     setMessage('');
@@ -50,9 +53,14 @@ const Chat = (props: HomeStackScreenProps<'Chat'>) => {
 
   const onConfirmSaveModal = async () => {
     try {
-      await apiChatSummary.mutateAsync({chatId: route.params?.id});
+      const response = await apiChatSummary.mutateAsync({
+        chatId: route.params?.id,
+      });
+
+      setChatSummary(response.data.data);
+      summaryModalRef.current?.show();
     } catch (error) {
-      console.error('[ERROR] 요약 저장 에러');
+      console.error('[ERROR] 요약 저장 에러', error);
     }
   };
 
@@ -92,6 +100,11 @@ const Chat = (props: HomeStackScreenProps<'Chat'>) => {
         title="대화 마치기"
         description="대화를 마치면 해당 대화를 저장합니다. 계속하시겠어요?"
         onConfirm={onConfirmSaveModal}
+      />
+      <ChatSummaryModal
+        modalRef={summaryModalRef}
+        chatSummary={chatSummary}
+        chatId={route.params.id}
       />
       <LoadingModal isLoading={apiChatSummary.isPending} />
     </Wrapper>

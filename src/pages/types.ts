@@ -25,7 +25,7 @@ export type HomeStackParamList = {
 };
 
 export type TabParamList = {
-  HomeNavigator: undefined;
+  HomeNavigator: {screen: keyof HomeStackParamList};
   Settings: {text: string};
   EmotionBeadList: undefined;
   ContentList: undefined;

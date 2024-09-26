@@ -1,5 +1,6 @@
 import React, {useMemo} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 
 import BeadList from '@widgets/BeadList';
 import useApiEmotionBeadList from '@shared/api/emotion-bead/list';
@@ -10,14 +11,18 @@ type EmotionBeadListProps = {};
 
 const EmotionBeadList = (props: EmotionBeadListProps) => {
   const {} = props;
-  const {data} = useApiEmotionBeadList({limit: '16', page: '1'});
+  const emotionBeadList = useApiEmotionBeadList({limit: '16', page: '1'});
 
   const emotionList = useMemo(() => {
-    if (!data) {
+    if (!emotionBeadList.data) {
       return [];
     }
-    return data.data.data;
-  }, [data]);
+    return emotionBeadList.data.data.data;
+  }, [emotionBeadList.data]);
+
+  useFocusEffect(() => {
+    emotionBeadList.refetch();
+  });
 
   return (
     <Wrapper>

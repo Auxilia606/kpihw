@@ -1,70 +1,75 @@
 import React, {useState} from 'react';
-import {
-  Pressable,
-  SafeAreaView,
-  StyleSheet,
-  TextInput,
-  View,
-} from 'react-native';
+import {Pressable, StyleSheet, TextInput, View} from 'react-native';
+import {Button} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import ChatArea from '@widgets/ChatArea';
+import ChatSummaryModal from '@widgets/ChatSummaryModal';
 import TabHeader from '@features/TabHeader';
-import {ChatBubbleProps} from '@entities/ChatBubble';
+import {useBaseModalControl} from '@entities/BaseModal';
+import ConfirmModal from '@entities/ConfirmModal';
+import LoadingModal from '@entities/LoadingModal';
+import useApiChat, {MessageDTO} from '@shared/api/chat';
+import useApiChatSummary, {ChatSummaryDTO} from '@shared/api/chat/summary';
+import Wrapper from '@shared/components/Wrapper';
 
-const Chat = () => {
+import {HomeStackScreenProps} from './types';
+
+const Chat = (props: HomeStackScreenProps<'Chat'>) => {
+  const {route} = props;
   const [message, setMessage] = useState('');
-  const [chatMessages, setChatMessages] = useState<ChatBubbleProps[]>([
-    {
-      role: 'assistant',
-      content: 'Hello, How can I help you today?',
-      dateTime: new Date(),
-    },
-    {
-      role: 'user',
-      content: "I'm having a bad day",
-      dateTime: new Date(),
-    },
-    {
-      role: 'assistant',
-      content: "I'm sorry to hear that. Is there anything I can do to help?",
-      dateTime: new Date(),
-    },
-    {
-      role: 'assistant',
-      content: 'Or is there anything you would like to talk about?',
-      dateTime: new Date(),
-    },
-    {
-      role: 'user',
-      content:
-        "I don't want to be in this situation, but everyone seems to be expecting so much from me...",
-      dateTime: new Date(),
-    },
-  ]);
+  const apiChat = useApiChat();
+  const apiChatSummary = useApiChatSummary();
+  const [chatMessages, setChatMessages] = useState<MessageDTO[]>([]);
+  const [chatSummary, setChatSummary] = useState<ChatSummaryDTO>();
+  const {modalRef} = useBaseModalControl();
+  const {modalRef: summaryModalRef} = useBaseModalControl();
 
-  const submitMessage = () => {
+  const submitMessage = async () => {
     setMessage('');
     setChatMessages(prev => {
-      const newMessage = [...prev];
-      newMessage.push({
-        role: 'user',
-        content: message,
-        dateTime: new Date(),
-      });
-      return newMessage;
+      return [
+        ...prev,
+        {
+          _id: 'tempusermessage',
+          content: message,
+          role: 'user',
+          timestamp: new Date(),
+        },
+      ];
     });
+
+    const data = await apiChat.mutateAsync({
+      chatId: route.params?.id,
+      userMessage: message,
+    });
+
+    setChatMessages(data.data.data);
   };
 
-  const flexStretch = {flex: 1};
+  const onPressClose = () => {
+    modalRef.current?.show();
+  };
+
+  const onConfirmSaveModal = async () => {
+    try {
+      const response = await apiChatSummary.mutateAsync({
+        chatId: route.params?.id,
+      });
+
+      setChatSummary(response.data.data);
+      summaryModalRef.current?.show();
+    } catch (error) {
+      console.error('[ERROR] 요약 저장 에러', error);
+    }
+  };
 
   return (
-    <SafeAreaView style={flexStretch}>
-      <View style={flexStretch}>
+    <Wrapper>
+      <View style={styles.container}>
         <TabHeader title="Chat" />
         <ChatArea chatMessages={chatMessages} />
       </View>
-
       {/* Chat Input */}
       <View style={styles.chatInputWrapper}>
         <TextInput
@@ -76,18 +81,42 @@ const Chat = () => {
           onSubmitEditing={() => submitMessage()}
           style={styles.chatInput}
         />
-        <Pressable style={styles.sendIcon} onPress={() => submitMessage()}>
-          <MaterialCommunityIcons name="send" color={'#EF458E'} size={20} />
+        <Pressable
+          disabled={apiChat.isPending}
+          style={styles.sendIcon}
+          onPress={() => submitMessage()}>
+          <MaterialCommunityIcons
+            name="send"
+            color={apiChat.isPending ? '#bbbbbb' : '#EF458E'}
+            size={20}
+          />
         </Pressable>
+        <Button mode="contained" onPress={onPressClose}>
+          대화 마치기
+        </Button>
       </View>
-    </SafeAreaView>
+      <ConfirmModal
+        modalRef={modalRef}
+        title="대화 마치기"
+        description="대화를 마치면 해당 대화를 저장합니다. 계속하시겠어요?"
+        onConfirm={onConfirmSaveModal}
+      />
+      <ChatSummaryModal
+        modalRef={summaryModalRef}
+        chatSummary={chatSummary}
+        chatId={route.params.id}
+      />
+      <LoadingModal isLoading={apiChatSummary.isPending} />
+    </Wrapper>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {flex: 1},
   // Chat Input
   chatInputWrapper: {
-    padding: 14,
+    padding: 20,
+    gap: 16,
   },
   chatInput: {
     minHeight: 40,
@@ -99,6 +128,7 @@ const styles = StyleSheet.create({
     borderColor: '#EF458E',
     backgroundColor: '#fff',
     borderRadius: 10,
+    color: '#000000',
   },
   sendIcon: {
     position: 'absolute',

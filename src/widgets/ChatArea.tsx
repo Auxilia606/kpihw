@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {ScrollView} from 'react-native';
 
 import ChatBubble from '@entities/ChatBubble';
@@ -10,18 +10,20 @@ export type ChatAreaProps = {
 
 const ChatArea = (props: ChatAreaProps) => {
   const {chatMessages} = props;
+  const scrollRef = useRef<ScrollView>(null);
+
+  useEffect(() => {
+    if (!scrollRef.current) {
+      return;
+    }
+
+    scrollRef.current.scrollToEnd();
+  }, [chatMessages.length]);
 
   return (
-    <ScrollView>
+    <ScrollView ref={scrollRef}>
       {chatMessages.map((msg, idx) => {
-        return (
-          <ChatBubble
-            content={msg.content}
-            dateTime={msg.dateTime}
-            role={msg.role}
-            key={idx}
-          />
-        );
+        return <ChatBubble {...msg} key={idx} />;
       })}
     </ScrollView>
   );

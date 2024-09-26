@@ -1,46 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useMemo} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 
 import {HomeStackScreenProps} from '@pages/types';
 import ChatbotList from '@widgets/ChatbotList';
-import {ChatbotProps} from '@entities/Chatbot';
 import HomeHeader from '@entities/HomeHeader';
-import ChatbotSunfish from '@shared/assets/image/ChatbotSunfish.png';
-import ChatbotTeddy from '@shared/assets/image/ChatbotTeddy.png';
-import ChatbotTRuler from '@shared/assets/image/ChatbotTRuler.png';
+import useApiChatbotList from '@shared/api/chatbot/list';
 import CustomText from '@shared/components/CustomText';
 import Wrapper from '@shared/components/Wrapper';
 
 const SelectChatbot = (props: HomeStackScreenProps<'SelectChatbot'>) => {
   const {navigation} = props;
 
-  const [chatbotList, setChatbotList] = useState<ChatbotProps[]>([]);
+  const {data} = useApiChatbotList({limit: '100', page: '1'});
 
-  // TODO:
-  useEffect(() => {
-    setChatbotList([
-      {
-        name: '푸른 눈 테디베어',
-        description: '언제나 너의 말을 들어줄게',
-        profile: ChatbotTeddy,
-      },
-      {
-        name: '살아남는 개복치',
-        description: '초초초 예민 보스',
-        profile: ChatbotSunfish,
-      },
-      {
-        name: '너 티니? 나 티 자',
-        description: '객관적인 팩트를 좋아해. 너의 생각에 진실은 몇 %일까?',
-        profile: ChatbotTRuler,
-      },
-      {
-        type: 'unlock',
-        name: '새 친구 대기 중',
-        description: '대화 10회 이상 (3/10)',
-      },
-    ]);
-  }, []);
+  const chatbotList = useMemo(() => {
+    if (!data) {
+      return [];
+    }
+
+    return data.data.data;
+  }, [data]);
 
   return (
     <Wrapper>

@@ -21,12 +21,12 @@ export type HomeStackParamList = {
   RecordFeelingWordDetail: undefined;
   MakeEmotionBead: undefined;
   SelectChatbot: undefined;
+  Chat: {id: string};
 };
 
 export type TabParamList = {
-  HomeNavigator: undefined;
+  HomeNavigator: {screen: keyof HomeStackParamList};
   Settings: {text: string};
-  Chat: undefined;
   EmotionBeadList: undefined;
   ContentList: undefined;
 };

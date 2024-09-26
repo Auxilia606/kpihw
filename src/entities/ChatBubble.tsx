@@ -1,14 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-export type ChatBubbleProps = {
-  role: 'assistant' | 'user';
-  content: string;
-  dateTime: Date;
-};
+import {MessageDTO} from '@shared/api/chat';
+
+export type ChatBubbleProps = MessageDTO;
 
 const ChatBubble = (props: ChatBubbleProps) => {
-  const {content, dateTime, role} = props;
+  const {content, timestamp, role} = props;
 
   return (
     <View
@@ -21,9 +19,12 @@ const ChatBubble = (props: ChatBubbleProps) => {
           styles.chatDateTime,
           role === 'assistant' && styles.colorWhite,
         ]}>
-        {dateTime.toDateString()}
+        {new Date(timestamp)?.toDateString()}
       </Text>
-      <Text style={role === 'assistant' && styles.colorWhite}>{content}</Text>
+      <Text
+        style={[styles.chatText, role === 'assistant' && styles.colorWhite]}>
+        {content}
+      </Text>
     </View>
   );
 };
@@ -55,6 +56,9 @@ const styles = StyleSheet.create({
   chatDateTime: {
     fontSize: 10,
     marginBottom: 10,
+    color: 'rgba(0,0,0,0.5)',
+  },
+  chatText: {
     color: 'rgba(0,0,0,0.5)',
   },
   colorWhite: {

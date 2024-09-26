@@ -2,20 +2,21 @@ import {useMutation} from '@tanstack/react-query';
 
 import {api} from '@shared/configuration/api';
 
+import {ChatSummaryDTO} from '../chat/summary';
+
 type ReqDTO = {
-  username: string; // '홍길동';
-  email: string; // 'testuser01@test.com';
-  password: string; // 'dweax123!@#';
+  emotion: ChatSummaryDTO;
+  chatId: string;
 };
 
 const request = (body: ReqDTO) => {
-  return api.post('/auth/register', body);
+  return api.post('/emotion-bead/create', body);
 };
 
-const useApiAuthRegister = () => {
+const useApiEmotionBeadCreate = () => {
   return useMutation({
     mutationFn: (body: ReqDTO) => request(body),
   });
 };
 
-export default useApiAuthRegister;
+export default useApiEmotionBeadCreate;

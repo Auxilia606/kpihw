@@ -3,7 +3,7 @@ import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 
 import {HomeStackScreenProps} from '@pages/types';
-import BaseModal from '@entities/BaseModal';
+import BaseModal, {useBaseModalControl} from '@entities/BaseModal';
 import TextInputLine from '@entities/TextInputLine';
 import Bead from '@shared/assets/image/Bead.png';
 import Brain from '@shared/assets/image/Brain.png';
@@ -17,16 +17,16 @@ const MakeEmotionBead = (props: HomeStackScreenProps<'MakeEmotionBead'>) => {
   const {navigation} = props;
   const {setProgress, selectedEmotion} = useHomeHeaderAtom();
   const [text, setText] = useState('');
-  const [modalVisible, setModalVisible] = useState(false);
+  const {modalRef} = useBaseModalControl();
 
   const onPressSubmit = () => {
-    setModalVisible(true);
+    modalRef.current?.show();
   };
 
   const onPressModal = () => {
-    setModalVisible(false);
+    modalRef.current?.hide();
     navigation.popToTop();
-    navigation.navigate('Chat');
+    navigation.navigate('EmotionBeadList');
   };
 
   useFocusEffect(
@@ -64,7 +64,7 @@ const MakeEmotionBead = (props: HomeStackScreenProps<'MakeEmotionBead'>) => {
           />
         </View>
       </ScrollView>
-      <BaseModal visible={modalVisible} contentStyle={styles.modalContent}>
+      <BaseModal ref={modalRef} contentContainerStyle={styles.modalContent}>
         <CustomText fontSize="lg" fontWeight="bold">
           감정구슬을 저장했어요
         </CustomText>

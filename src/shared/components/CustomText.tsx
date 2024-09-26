@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 
   // font size
   sm: {fontSize: 8, lineHeight: 20, letterSpacing: 8 * LETTER_SPACING_CONST},
-  md: {fontSize: 12, lineHeight: 23, letterSpacing: 12 * LETTER_SPACING_CONST},
+  md: {fontSize: 16, lineHeight: 23, letterSpacing: 12 * LETTER_SPACING_CONST},
   lg: {fontSize: 20, lineHeight: 23, letterSpacing: 20 * LETTER_SPACING_CONST},
   xl: {fontSize: 32, lineHeight: 40, letterSpacing: 32 * LETTER_SPACING_CONST},
 });

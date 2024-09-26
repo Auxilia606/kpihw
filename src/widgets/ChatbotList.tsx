@@ -18,12 +18,7 @@ const ChatbotList = (props: ChatbotListProps) => {
         numColumns={2}
         estimatedItemSize={76}
         renderItem={({item}) => (
-          <Chatbot
-            name={item.name}
-            description={item.description}
-            profile={item.profile}
-            type={item.type}
-          />
+          <Chatbot {...item} profile={item.profile} type={item.type} />
         )}
       />
     </ScrollView>

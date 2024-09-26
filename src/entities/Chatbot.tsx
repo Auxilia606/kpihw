@@ -10,25 +10,36 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {RootStackParamList} from '@pages/types';
+import {HomeStackParamList} from '@pages/types';
+import useApiChatCreate from '@shared/api/chat/create';
+import {ChatBotDTO} from '@shared/api/chatbot/list';
 import Lock from '@shared/assets/image/bx-lock.png';
 
-export type ChatbotProps = {
-  name: string;
-  description: string;
+export type ChatbotProps = ChatBotDTO & {
   profile?: ImageSourcePropType;
   // height?: number;
   type?: undefined | 'unlock';
 };
 
 const Chatbot = (props: ChatbotProps) => {
-  const {name, description, profile, type} = props;
+  const {_id, name, description, profile, type} = props;
   const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    useNavigation<
+      NativeStackNavigationProp<HomeStackParamList, 'SelectChatbot'>
+    >();
+  const {mutateAsync} = useApiChatCreate();
+
+  const onPressChatBot = async () => {
+    try {
+      const response = await mutateAsync({botId: _id});
+
+      navigation.navigate('Chat', {id: response.data.data._id});
+    } catch (error) {}
+  };
 
   return (
     <Pressable
-      onPress={() => navigation.navigate('Tab', {screen: 'Chat'})}
+      onPress={onPressChatBot}
       style={[styles.chatbot, type === 'unlock' && styles.chatbotUnlock]}>
       <View
         style={[
@@ -66,11 +77,13 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   chatbotName: {
+    color: '#000000',
     flexShrink: 1,
     fontSize: 14,
     fontWeight: 'bold',
   },
   chatbotDescription: {
+    color: '#222222',
     marginTop: 12,
   },
   adContainer: {

@@ -1,6 +1,6 @@
-import {api} from '@shared/configuration/api';
-
 import {useMutation} from '@tanstack/react-query';
+
+import {api} from '@shared/configuration/api';
 
 type ReqDTO = {
   username: string; // '홍길동';
